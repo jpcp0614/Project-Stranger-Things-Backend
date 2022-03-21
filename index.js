@@ -19,7 +19,8 @@ const strangerThingsService = new StrangerThingsService(
 
 app.use(cors());
 
-const hereIsTheUpsideDown = process.env.UPSIDEDOWN_MODE || true;
+const hereIsTheUpsideDown = JSON.parse(process.env.UPSIDEDOWN_MODE);
+//* console.log(typeof JSON.parse('true')); // boolean ref.: 1
 
 app.get('/', (req, res) => {
   const characters = strangerThingsService.search(
@@ -33,3 +34,5 @@ app.get('/', (req, res) => {
 app.listen(PORT || 3000, () => {
   console.log(`Escutando na porta ${PORT}`);
 });
+
+//* 1 - https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse
